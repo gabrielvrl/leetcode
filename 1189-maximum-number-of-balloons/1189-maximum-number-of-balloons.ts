@@ -1,23 +1,42 @@
-/**
- * @param {string} text
- * @return {number}
- */
-var maxNumberOfBalloons = function(text) {
-    const obj = {}
-    let balloonCount = 0;
-    for (let c of text) {
-        obj[c] = (obj[c] || 0) + 1;
+function maxNumberOfBalloons(text: string): number {
+    const hashMap = {}
+    let result = 0;
+    
+    for(let i = 0; i < text.length; i++) {
+        const element = text[i]
+        if(hashMap[element] === undefined) {
+            hashMap[element] = 1
+        } else {
+            hashMap[element]++;
+        }
     }
 
-    while (obj['a'] > 0 && obj['b'] > 0 && obj['l'] > 1 && obj['n'] > 0 && obj['o'] > 1) {
-        balloonCount++;
-
-        obj['a']--;
-        obj['b']--;
-        obj['l'] -= 2;
-        obj['n']--;
-        obj['o'] -= 2;
+    const maximumPossibleBallons = hashMap["b"]
+    let ballonCondition;
+    
+    for(let i = 0; i < maximumPossibleBallons; i++){
+        ballonCondition = hashMap["b"] >= 1 && hashMap["a"] >= 1 && hashMap["l"] >= 2 && hashMap["o"] >= 2 && hashMap["n"] >= 1
+        if(ballonCondition){
+            result++;
+            hashMap["b"] = hashMap["b"] - 1
+            hashMap["a"] = hashMap["a"] - 1
+            hashMap["l"] = hashMap["l"] - 2
+            hashMap["o"] = hashMap["o"] - 2
+            hashMap["n"] = hashMap["n"] - 1
+        }
     }
-
-    return balloonCount;
+    
+    return result
 };
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
