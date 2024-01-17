@@ -18,14 +18,11 @@ function maxNumberOfBalloons(text: string): number {
     // o: 2
     // n: 1
     // ou múltiplos
-    console.log(hashMap)
+    
     const maximumPossibleBallons = hashMap["b"]
-    console.log(maximumPossibleBallons)
     let ballonCondition;
     
     for(let i = 0; i < maximumPossibleBallons; i++){
-        console.log(i)
-        console.log(ballonCondition)
         ballonCondition = hashMap["b"] >= 1 && hashMap["a"] >= 1 && hashMap["l"] >= 2 && hashMap["o"] >= 2 && hashMap["n"] >= 1
         if(ballonCondition){
             result++;
@@ -35,7 +32,6 @@ function maxNumberOfBalloons(text: string): number {
             hashMap["o"] = hashMap["o"] - 2
             hashMap["n"] = hashMap["n"] - 1
         }
-        console.log(hashMap["l"])
     }
     
     return result
